@@ -1,8 +1,19 @@
 const express = require('express')
 const graphqlHTTP = require('express-graphql')
 const schema = require('./schema/schema')
+const mongoose = require('mongoose')
+require('dotenv').config()
 
 const app = express()
+
+const dbOptions = { useNewUrlParser: true, useUnifiedTopology: true }
+mongoose.connect(process.env.DB_URL, dbOptions, (err) => {
+  if (err) {
+    console.log('Database not connected ❌')
+  } else {
+    console.log('Connected to Database ✅')
+  }
+})
 
 app.use('/graphql', graphqlHTTP({
   schema,
