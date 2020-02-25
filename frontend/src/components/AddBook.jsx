@@ -12,11 +12,8 @@ export default function AddBook() {
       name: book.name,
       genre: book.genre,
       authorId: book.authorId
-    }, refetchQueries: [
-      {
-        query: getBooksQuery
-      }
-    ]
+    }, 
+    refetchQueries: [{query: getBooksQuery}]
   })
 
   const displayAuthors = () => {

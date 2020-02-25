@@ -1,37 +1,35 @@
-import React, { Fragment } from 'react'
-import { useQuery, useMutation } from '@apollo/react-hooks'
+import React, { Fragment, useState } from 'react'
+import { useQuery } from '@apollo/react-hooks'
 import Button from './shared/Button'
+import BookDetails from './BookDetails'
 import { getBooksQuery } from './../queries/queries'
 
 export default function BookList() {
-  const { loading: queryLoading, error, data: queryData } = useQuery(getBooksQuery)
+  const [ selected, setSelected ] = useState(null)
+  const { loading: booksQueryLoading, error: booksQueryError, data: BooksQueryData } = useQuery(getBooksQuery)
 
   async function handleDeleteBook(bookId) {
-    // try {
-    //   await deleteBook(bookId)
-    // } catch (error) {
-    //   console.log(error)
-    //   return error
-    // }
     console.log(`handleDeleteBook is deleting ${bookId}`)
   }
 
-  if (error) return <p>Error :</p>
-
-  const style = {
-    backgroundColor: 'orange',
-    ':disabled': {
-      backgroundColor: '#222'
-    }
-  }
-
-  return queryData ? 
+  const displayBooks = () => {
+    return BooksQueryData ? 
     <ul>
-      {queryData.books.map( book => (
+      {BooksQueryData.books.map( book => (
         <Fragment key={book.id}>
-          <li>{book.name}</li>
-          <Button style={ style }  onClick={() => handleDeleteBook(book.id)} title={`Delete ${book.name}`} />
+          <li onClick={(e) => setSelected(book.id)}>{book.name}</li>
+          <Button onClick={() => handleDeleteBook(book.id)} title={`Delete ${book.name}`} />
         </Fragment>
       ))}
     </ul> : <p>Loading ...</p>
+  }
+
+  if (booksQueryError) return <p>Error :</p>
+
+  return(
+    <>
+      {displayBooks()}
+      <BookDetails book={selected} />
+    </>
+  )
 }
