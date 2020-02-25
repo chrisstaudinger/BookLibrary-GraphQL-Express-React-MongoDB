@@ -1,42 +1,53 @@
-import React from 'react'
-import { gql } from 'apollo-boost'
-import { useQuery } from '@apollo/react-hooks'
+import React, { useState } from 'react'
+import { useQuery, useMutation } from '@apollo/react-hooks'
+import { getAuthorsQuery, AddBookMutation, getBooksQuery } from './../queries/queries'
 
-const getAuthorsQuery = gql`
-  {
-    authors {
-      name
-      id
-    }
-  }
-`
 
-const AddBook = () => {
-  const { loading, error, data } = useQuery(getAuthorsQuery)
+export default function AddBook() {
+  const [ book, setBook ] = useState({})
+  const { loading: authorsQueryLoading, error, data: authorsData } = useQuery(getAuthorsQuery)
+
+  const [ addBook, { data } ] = useMutation(AddBookMutation, {
+    variables: {
+      name: book.name,
+      genre: book.genre,
+      authorId: book.authorId
+    }, refetchQueries: [
+      {
+        query: getBooksQuery
+      }
+    ]
+  })
 
   const displayAuthors = () => {
-    if(loading){
+    if(authorsQueryLoading){
       return( <option disabled>Loading authors</option> )
     } else {
-      return data.authors.map(author => (
+      return authorsData.authors.map(author => (
         <option key={ author.id } value={author.id}>{ author.name }</option>
       ))
     }
   }
 
+  const submitForm = (e) => {
+    e.preventDefault()
+    addBook()
+    console.log(book)
+  }
+
   return(
-    <form id="add-book">
+    <form id="add-book" onSubmit={(e) => submitForm(e)}>
       <div className="field">
         <label>Book name:</label>
-        <input type="text" />
+        <input type="text" onChange={(e) => setBook({...book, name: e.target.value})} />
       </div>
       <div className="field">
           <label>Genre:</label>
-          <input type="text" />
+          <input type="text" onChange={(e) => setBook({...book, genre: e.target.value})} />
       </div>
       <div className="field">
           <label>Author:</label>
-          <select>
+          <select onChange={(e) => setBook({...book, authorId: e.target.value})}>
               <option>Select author</option>
               { displayAuthors() }
           </select>
@@ -45,5 +56,3 @@ const AddBook = () => {
     </form>
   )
 }
-
-export default AddBook
