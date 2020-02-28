@@ -12,18 +12,24 @@ code {
     monospace;
 } */
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+}
 
 body {
-  background: #eee;
+  min-height: 100vh;
+  background: #efefef;
+  background: linear-gradient(135deg, rgba(255,147,0.5) 0%, rgba(250,0,255,0.5) 100%);
+  /* background: rgb(191,60,101);
+  background: linear-gradient(135deg, rgba(191,60,101,0.7) 0%, rgba(89,36,194,0.7) 100%); */
+}
+/* body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-button:disabled {
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  color: #666666;
-}
+} */

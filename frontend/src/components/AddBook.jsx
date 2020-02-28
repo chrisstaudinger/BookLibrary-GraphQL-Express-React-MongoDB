@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { getAuthorsQuery, AddBookMutation, getBooksQuery } from './../queries/queries'
+import styled from 'styled-components'
+import { PrimaryButton } from './shared/Button'
 
 
 export default function AddBook() {
@@ -33,23 +35,53 @@ export default function AddBook() {
   }
 
   return(
-    <form id="add-book" onSubmit={(e) => submitForm(e)}>
-      <div className="field">
-        <label>Book name:</label>
-        <input type="text" onChange={(e) => setBook({...book, name: e.target.value})} />
-      </div>
-      <div className="field">
-          <label>Genre:</label>
-          <input type="text" onChange={(e) => setBook({...book, genre: e.target.value})} />
-      </div>
-      <div className="field">
-          <label>Author:</label>
+    <Form id="add-book" onSubmit={(e) => submitForm(e)}>
+      <InputFieldWrapper className="field">
+        <Label>Title:</Label>
+        <Input type="text" onChange={(e) => setBook({...book, name: e.target.value})} />
+      </InputFieldWrapper>
+      <InputFieldWrapper className="field">
+          <Label>Genre:</Label>
+          <Input type="text" onChange={(e) => setBook({...book, genre: e.target.value})} />
+      </InputFieldWrapper>
+      <InputFieldWrapper className="field">
+          <Label>Author:</Label>
           <select onChange={(e) => setBook({...book, authorId: e.target.value})}>
               <option>Select author</option>
               { displayAuthors() }
           </select>
-      </div>
-      <button>+</button>
-    </form>
+      </InputFieldWrapper>
+      <PrimaryButton title={'Add Book'} />
+    </Form>
   )
 }
+
+
+const Form = styled.form`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 450px;
+  padding: 50px;
+  margin-bottom: 60px;
+  /* border: 3px solid #000; */
+  border-radius: 3px;
+  background-color: #fff;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
+`
+
+const InputFieldWrapper = styled.div`
+  padding: 5px 0;
+  width: 100%;
+  display: flex;
+`
+
+const Input = styled.input`
+  width: 100%;
+`
+
+const Label = styled.label`
+  margin-right: 5px;
+  font-size: 1.2em;
+`
