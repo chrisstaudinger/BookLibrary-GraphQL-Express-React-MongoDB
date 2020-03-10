@@ -2,9 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useState } from 'react'
 
-const BaseButton = styled.button.attrs(props => ({
-  cursor: props.disabled ? 'default' : 'pointer',
-}))`
+const BaseButton = styled.button`
   padding: 15px;
   border-radius: 15px;
   border: 3px solid #fff;

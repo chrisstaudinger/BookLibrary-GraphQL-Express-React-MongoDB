@@ -1,7 +1,7 @@
 import React from "react"
 import styled from 'styled-components'
 
-const Error = ({ message, touched }) => {
+export default function Error({ message, touched }) {
   if (!touched) {
     return <Div className="form-message invalid"></Div>
   }
@@ -15,6 +15,5 @@ const Div = styled.div`
   color: rgba(255,147,1);
   display: flex;
   align-self: flex-start;
+  margin: ${props => (props.touched && props.message) ? "-5px 0" : "0"};
 `
-
-export default Error

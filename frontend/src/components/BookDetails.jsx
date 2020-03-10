@@ -47,16 +47,20 @@ export default function BookDetails({ book }) {
 const BookDetailsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: start;
   width: 100%;
   color: #fff;
   padding-bottom: 50px;
+  @media (max-width: 568px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `
 
 const Heading = styled.h2`
   text-align: center;
-  padding: 0px 0 30px;
+  padding: 0 0 30px;
   color: #fff;
   font-size: 2em;
 `
@@ -65,16 +69,23 @@ const BookDetailsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  max-width: 350px;
+  padding-right: 25px;
 `
 
 const AllBookByAuthor = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-left: 25px;
+  @media (max-width: 568px) {
+    padding-left: 0;
+  }
 `
 
 const ListItem = styled.li`
   list-style: none;
+  max-width: 350px;
 `
 
 const NoSelection = styled.div`

@@ -42,6 +42,9 @@ const Heading = styled.div`
   font-size: 3.5em;
   padding: 60px 0; 
   color: #fff;
+  @media (max-width: 568px) {
+    font-size: 2.5em;
+  }
 ` 
 
 const BookListWrapper = styled.ul`
@@ -49,27 +52,31 @@ const BookListWrapper = styled.ul`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 0 40px 50px;
+  padding: 0 0px 50px;
 
 `
 
 const ListItem = styled.li`
   background: transparent;
   border-radius: 2.5px;
-  /* border: 2px solid #000; */
+  border: 2px #fff solid;
   background-color: #fff;
   color: #000;
   margin: 10px;
-  padding: 0.25em 1em;
+  padding: 0.5em 1em;
   list-style: none;
   text-align: center;
   cursor: pointer;
   min-width: 150px;
-  max-width: 150px;
+  max-width: 300px;
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
+  &:hover {
+    background: none;
+    border: 2px #fff solid;
+  }
 `
 

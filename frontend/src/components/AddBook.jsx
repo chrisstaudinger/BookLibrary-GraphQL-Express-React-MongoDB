@@ -94,6 +94,14 @@ const Form = styled.form`
   border-radius: 3px;
   background-color: #fff;
   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
+  @media (max-width: 768px) {
+    width: 400px;
+    padding: 35px;
+  }
+  @media (max-width: 414px) {
+    width: 300px;
+    padding: 20px;
+  }
 `
 
 const InputFieldWrapper = styled.div`
