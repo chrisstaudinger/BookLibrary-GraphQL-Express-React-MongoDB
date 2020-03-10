@@ -15,7 +15,7 @@ export default function AddBook() {
       genre: book.genre,
       authorId: book.authorId
     }, 
-    refetchQueries: [{query: getBooksQuery}]
+    refetchQueries: [{query: getBooksQuery}],
   })
 
   const displayAuthors = () => {
@@ -23,10 +23,12 @@ export default function AddBook() {
       return( <option disabled>Loading authors</option> )
     } else {
       return authorsData.authors.map(author => (
-        <option key={ author.id } value={author.id}>{ author.name }</option>
+        <option key={author.id} value={author.id}>{author.name}</option>
       ))
     }
   }
+
+  const isDisabled = !book.name || !book.genre || !book.authorId
 
   const submitForm = (e) => {
     e.preventDefault()
@@ -51,7 +53,7 @@ export default function AddBook() {
               { displayAuthors() }
           </select>
       </InputFieldWrapper>
-      <PrimaryButton title={'Add Book'} />
+      <PrimaryButton title={'Add Book'} disabled={isDisabled} />
     </Form>
   )
 }
@@ -65,7 +67,6 @@ const Form = styled.form`
   width: 450px;
   padding: 50px;
   margin-bottom: 60px;
-  /* border: 3px solid #000; */
   border-radius: 3px;
   background-color: #fff;
   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
