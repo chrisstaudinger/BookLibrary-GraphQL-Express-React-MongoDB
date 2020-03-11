@@ -23,3 +23,9 @@ yarn-debug.log*
 yarn-error.log*
 
 package-lock.json
+.env
+.env.development
+netlify.toml
+../.netlify
+# Local Netlify folder
+.netlify
