@@ -50,7 +50,7 @@ const BookDetailsContainer = styled.div`
   justify-content: center;
   align-items: start;
   width: 100%;
-  color: #fff;
+  color: #000;
   padding-bottom: 50px;
   @media (max-width: 568px) {
     flex-direction: column;
@@ -61,7 +61,7 @@ const BookDetailsContainer = styled.div`
 const Heading = styled.h2`
   text-align: center;
   padding: 0 0 30px;
-  color: #fff;
+  color: #000;
   font-size: 2em;
 `
 
@@ -90,5 +90,5 @@ const ListItem = styled.li`
 
 const NoSelection = styled.div`
   margin-bottom: 50px;
-  color: #fff;
+  color: #000;
 `

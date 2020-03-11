@@ -41,7 +41,7 @@ export default function BookList() {
 const Heading = styled.div`
   font-size: 3.5em;
   padding: 60px 0; 
-  color: #fff;
+  color: #000;
   @media (max-width: 568px) {
     font-size: 2.5em;
   }
