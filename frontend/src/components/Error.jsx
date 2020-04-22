@@ -12,8 +12,7 @@ export default function Error({ message, touched }) {
 }
 
 const Div = styled.div`
-  /* color: rgba(255,147,1); */
-  color: red;
+  color: #d32f2f;
   display: flex;
   align-self: flex-start;
   margin: ${props => (props.touched && props.message) ? "-5px 0" : "0"};

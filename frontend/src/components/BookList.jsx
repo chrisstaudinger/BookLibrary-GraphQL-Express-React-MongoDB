@@ -1,6 +1,5 @@
 import React, { Fragment, useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
-// import Button from './shared/Button'
 import BookDetails from './BookDetails'
 import { getBooksQuery } from './../queries/queries'
 import styled from 'styled-components'
@@ -8,10 +7,6 @@ import styled from 'styled-components'
 export default function BookList() {
   const [ selected, setSelected ] = useState(null)
   const { loading: booksQueryLoading, error: booksQueryError, data: BooksQueryData } = useQuery(getBooksQuery)
-
-  // async function handleDeleteBook(bookId) {
-  //   console.log(`handleDeleteBook is deleting ${bookId}`)
-  // }
 
   const displayBooks = () => {
     return BooksQueryData ?
@@ -21,7 +16,6 @@ export default function BookList() {
         {BooksQueryData.books.map( book => (
           <Fragment key={book.id}>
             <ListItem onClick={(e) => setSelected(book.id)}>{book.name}</ListItem>
-            {/* <Button onClick={() => handleDeleteBook(book.id)} title={`Delete ${book.name}`} /> */}
           </Fragment>
         ))}
       </BookListWrapper>
@@ -52,31 +46,31 @@ const BookListWrapper = styled.ul`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 0 0px 50px;
-
+  padding: 0 80px 50px;
+  @media (max-width: 768px) {
+    padding: 0 0px 50px;
+  }
 `
 
 const ListItem = styled.li`
   background: transparent;
-  border-radius: 2.5px;
-  border: 2px #fff solid;
-  background-color: #fff;
+  background-color: #83A9A6;
   color: #000;
   margin: 10px;
   padding: 0.5em 1em;
   list-style: none;
   text-align: center;
   cursor: pointer;
-  min-width: 150px;
+  min-width: 180px;
   max-width: 300px;
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 2px;
   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
   &:hover {
-    background: none;
-    border: 2px #fff solid;
+    background: #009688;
   }
 `
 

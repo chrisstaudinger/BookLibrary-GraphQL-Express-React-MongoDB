@@ -60,21 +60,21 @@ export default function AddBook() {
   return(
     <Form id="add-book" onSubmit={(e) => submitForm(e)}>
       <InputFieldWrapper>
-        <Label>Title:&nbsp;</Label>
-        <Input type="text" onChange={(e) => setBook({...book, name: e.target.value})} onBlur={() => setIsTouched({...isTouched, name: true})} />
+        <Label htmlFor="title">Title:&nbsp;</Label>
+        <Input type="text" id="title" onChange={(e) => setBook({...book, name: e.target.value})} onBlur={() => setIsTouched({...isTouched, name: true})} />
       </InputFieldWrapper>
       <Error message={errors.name} touched={isTouched.name} />
       <InputFieldWrapper>
-          <Label>Genre:&nbsp;</Label>
-          <Input type="text" onChange={(e) => setBook({...book, genre: e.target.value})} onBlur={() => setIsTouched({...isTouched, genre: true})} />
+          <Label htmlFor="genre">Genre:&nbsp;</Label>
+          <Input type="text" id="genre" onChange={(e) => setBook({...book, genre: e.target.value})} onBlur={() => setIsTouched({...isTouched, genre: true})} />
       </InputFieldWrapper>
       <Error message={errors.genre} touched={isTouched.genre} />
       <InputFieldWrapper>
-          <Label>Author:&nbsp;</Label>
-          <select onChange={(e) => setBook({...book, authorId: e.target.value})} onBlur={() => setIsTouched({...isTouched, authorId: true})} >
+          <Label htmlFor="author">Author:&nbsp;</Label>
+          <Select id="author" onChange={(e) => setBook({...book, authorId: e.target.value})} onBlur={() => setIsTouched({...isTouched, authorId: true})} >
               <option>Select author</option>
               { displayAuthors() }
-          </select>
+          </Select>
       </InputFieldWrapper>
       <Error message={errors.authorId} touched={isTouched.authorId} />
       <PrimaryButton title={'Add Book'} disabled={isDisabled} />
@@ -92,7 +92,7 @@ const Form = styled.form`
   padding: 50px;
   margin-bottom: 60px;
   border-radius: 3px;
-  background-color: #fff;
+  background-color: #FFF;
   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15);
   @media (max-width: 768px) {
     width: 400px;
@@ -110,11 +110,20 @@ const InputFieldWrapper = styled.div`
   display: flex;
 `
 
-const Input = styled.input`
-  width: 100%;
-`
-
 const Label = styled.label`
   margin-right: 5px;
   font-size: 1.2em;
+`
+
+const Input = styled.input`
+  width: 100%;
+  &:focus {
+    outline: solid 4px #80CBC4;
+  }
+`
+
+const Select = styled.select`
+  &:focus {
+    outline: solid 4px #80CBC4;
+  }
 `

@@ -21,8 +21,8 @@ code {
 
 body {
   min-height: 100vh;
-  background: #efefef;
-  background: linear-gradient(135deg, rgba(255,147,0.5) 0%, rgba(250,0,255,0.5) 100%);
+  background: #FAFAFA;
+  /* background: linear-gradient(135deg, rgba(255,147,0.5) 0%, rgba(250,0,255,0.5) 100%); */
   /* background: rgb(191,60,101);
   background: linear-gradient(135deg, rgba(191,60,101,0.7) 0%, rgba(89,36,194,0.7) 100%); */
 }
